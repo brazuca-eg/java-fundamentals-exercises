@@ -32,8 +32,8 @@ public class LinkedStack<T> implements Stack<T> {
      */
     public static <T> LinkedStack<T> of(T... elements) {
         LinkedStack<T> linkedStack = new LinkedStack<>();
-        for (int i = 0; i < elements.length; i++) {
-            linkedStack.push(elements[i]);
+        for (T element : elements) {
+            linkedStack.push(element);
         }
         return linkedStack;
     }
@@ -51,12 +51,10 @@ public class LinkedStack<T> implements Stack<T> {
         }
         Node<T> newNode = new Node<>();
         newNode.value = element;
-        if (head == null) {
-            head = newNode;
-        } else {
+        if (head != null) {
             newNode.next = head;
-            head = newNode;
         }
+        head = newNode;
         size++;
     }
 
@@ -72,13 +70,12 @@ public class LinkedStack<T> implements Stack<T> {
         if (head == null) {
             throw new EmptyStackException();
         }
+        Node<T> current = head;
         if (head.next == null) {
-            Node<T> current = head;
             head = null;
             size--;
             return current.value;
         }
-        Node<T> current = head;
         head = head.next;
         size--;
         return current.value;
