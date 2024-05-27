@@ -9,6 +9,6 @@ package com.bobobode.cs;
  * @author Taras Boychuk
  */
 public class Node<T> {
-    T value;
-    Node<T> next;
+    public T value;
+    public Node<T> next;
 }
